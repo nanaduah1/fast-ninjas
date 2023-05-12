@@ -39,8 +39,11 @@
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {},
-      "peerDependencies": {}
-    }
+      "peerDependencies": {
+        "@testing-library/react": "^14.0.0"
+      }
+    },
+    "linkCoreAspects": true
   },
   /**
    * workspace variants allow to set different subsets of configuration for components in your
