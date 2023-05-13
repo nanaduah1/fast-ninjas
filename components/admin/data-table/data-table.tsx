@@ -7,24 +7,32 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { createCols, createRows } from "./util";
+import { Column, createCols, createRows } from "./util";
 
 export type DataTableProps = {
   /**
    * a node to be rendered in the special component.
    */
-  row: Array<Array<string>>;
-  col: Array<string>;
+  row: Array<any>;
+  col: Array<Column>;
 };
 
-export function DataTable({ row, col }: DataTableProps) {
+export function DataTable({
+  row = [
+    { name: "Duah", address: "bn-34343", title: "Ninja 3" },
+    { name: "Rahman", address: "bx-34343", title: "Ninja 5" },
+    { name: "Kojo", address: "bz-34343", title: "Ninja 4" },
+  ],
+  col = [
+    { field: "name", title: "Full Name" },
+    { field: "title", title: "Job Title" },
+  ],
+}: DataTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const columns = createCols(col);
   const rows = createRows(row, col);
-
-  // console.log(rows, columns);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -46,11 +54,11 @@ export function DataTable({ row, col }: DataTableProps) {
               {columns &&
                 columns.map((column) => (
                   <TableCell
-                    key={column.id}
+                    key={column.field}
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
                   >
-                    {column.label}
+                    {column.title}
                   </TableCell>
                 ))}
             </TableRow>
@@ -63,9 +71,9 @@ export function DataTable({ row, col }: DataTableProps) {
                   return (
                     <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                       {columns.map((column) => {
-                        const value = row[column.id];
+                        const value = row[column.field];
                         return (
-                          <TableCell key={column.id} align={column.align}>
+                          <TableCell key={column.title} align={column.align}>
                             {column.format && typeof value === "number"
                               ? column.format(value)
                               : value}

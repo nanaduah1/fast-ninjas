@@ -1,18 +1,18 @@
-interface Column {
-  id: string;
-  label: string;
+export interface Column {
+  field: string;
+  title: string;
   minWidth?: number;
   align?: "right" | "left";
   format?: (value: number) => string;
 }
 
-export const createCols = (cols: Array<string>) => {
+export const createCols = (cols: Array<Column>) => {
   const columns: Column[] = [];
   let index: number = 0;
   for (const col of cols) {
     columns.push({
-      id: col,
-      label: col.toUpperCase(),
+      field: col.field,
+      title: col.title,
       minWidth: 170,
       align: index === 0 ? "left" : "right",
       format: (value: number) => value.toLocaleString("en-US"),
@@ -22,35 +22,14 @@ export const createCols = (cols: Array<string>) => {
   return columns;
 };
 
-export function createRows(
-  rows: Array<Array<string>>,
-  cols: Array<string>
-): any {
+export function createRows(rows: Array<any>, cols: Array<Column>): any {
   const data: any = [];
   for (const row of rows) {
     let currentRow: any = {};
     for (let i = 0; i < cols.length; i++) {
-      currentRow = { ...currentRow, [cols[i]]: row[i] };
+      currentRow = { ...currentRow, [cols[i].field]: row[cols[i].field] };
     }
     data.push(currentRow);
   }
   return data;
 }
-
-//   const rows = [
-//     createData("India", "IN", 1324171354, 3287263),
-//     createData("China", "CN", 1403500365, 9596961),
-//     createData("Italy", "IT", 60483973, 301340),
-//     createData("United States", "US", 327167434, 9833520),
-//     createData("Canada", "CA", 37602103, 9984670),
-//     createData("Australia", "AU", 25475400, 7692024),
-//     createData("Germany", "DE", 83019200, 357578),
-//     createData("Ireland", "IE", 4857000, 70273),
-//     createData("Mexico", "MX", 126577691, 1972550),
-//     createData("Japan", "JP", 126317000, 377973),
-//     createData("France", "FR", 67022000, 640679),
-//     createData("United Kingdom", "GB", 67545757, 242495),
-//     createData("Russia", "RU", 146793744, 17098246),
-//     createData("Nigeria", "NG", 200962417, 923768),
-//     createData("Brazil", "BR", 210147125, 8515767),
-//   ];
