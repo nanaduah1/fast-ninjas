@@ -1,0 +1,20 @@
+name: Test Components
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: "https://registry.npmjs.org"
+
+      - run: npx @teambit/bvm install
+      - run: $HOME/bin/bit install
+      - run: $HOME/bin/bit status
+    #   - run: $HOME/bin/bit test

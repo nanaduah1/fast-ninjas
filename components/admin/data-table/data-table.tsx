@@ -10,24 +10,11 @@ import TableRow from "@mui/material/TableRow";
 import { Column, createCols, createRows } from "./util";
 
 export type DataTableProps = {
-  /**
-   * a node to be rendered in the special component.
-   */
-  row: Array<any>;
-  col: Array<Column>;
+  data: Array<any>;
+  Columns: Array<Column>;
 };
 
-export function DataTable({
-  row = [
-    { name: "Duah", address: "bn-34343", title: "Ninja 3" },
-    { name: "Rahman", address: "bx-34343", title: "Ninja 5" },
-    { name: "Kojo", address: "bz-34343", title: "Ninja 4" },
-  ],
-  col = [
-    { field: "name", title: "Full Name" },
-    { field: "title", title: "Job Title" },
-  ],
-}: DataTableProps) {
+export function DataTable({ data: row, Columns: col }: DataTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
