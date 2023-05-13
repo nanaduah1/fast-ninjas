@@ -38,7 +38,11 @@
      */
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
-      "dependencies": {},
+      "dependencies": {
+        "@emotion/react": "^11.11.0",
+        "@emotion/styled": "^11.11.0",
+        "@mui/material": "^5.13.0"
+      },
       "peerDependencies": {
         "@testing-library/react": "^12.1.5",
         "react-dom": "^18.2.0"
@@ -59,7 +63,9 @@
      **/
     "*": {
       "teambit.pkg/pkg": {
-        "packageManagerPublishArgs": ["--access public"],
+        "packageManagerPublishArgs": [
+          "--access public"
+        ],
         "packageJson": {
           "name": "@fast-ninjas/{name}"
         }
