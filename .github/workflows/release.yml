@@ -24,7 +24,7 @@ jobs:
 
       - run: npx @teambit/bvm install
 
-      - run: bit status
-      - run: bit tag ${{ inputs.component }} -m ${{ inputs.message }}
+      - run: $HOME/bin/bit install
+      - run: $HOME/bin/bit tag ${{ inputs.component }} -m ${{ inputs.message }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}

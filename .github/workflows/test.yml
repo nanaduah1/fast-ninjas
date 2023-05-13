@@ -15,5 +15,6 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - run: npx @teambit/bvm install
+      - run: $HOME/bin/bit install
       - run: $HOME/bin/bit status
       - run: $HOME/bin/bit test
