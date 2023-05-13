@@ -14,6 +14,6 @@ jobs:
           node-version: 16
           registry-url: "https://registry.npmjs.org"
 
-      - run: npm install bit-bin --global
+      - run: npx @teambit/bvm install
       - run: bit status
       - run: bit test
