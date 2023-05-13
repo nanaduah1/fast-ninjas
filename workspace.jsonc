@@ -39,8 +39,12 @@
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {},
-      "peerDependencies": {}
-    }
+      "peerDependencies": {
+        "@testing-library/react": "^12.1.5",
+        "react-dom": "^18.2.0"
+      }
+    },
+    "linkCoreAspects": true
   },
   /**
    * workspace variants allow to set different subsets of configuration for components in your
@@ -54,10 +58,12 @@
      * "*" is a special rule which applied on all components in the workspace.
      **/
     "*": {
-      /**
-       * uncomment to apply the chosen environment on all components.
-       **/
-      // "teambit.react/react": { }
+      "teambit.pkg/pkg": {
+        "packageManagerPublishArgs": ["--access public"],
+        "packageJson": {
+          "name": "@fast-ninjas/{name}"
+        }
+      }
     }
   }
 }
