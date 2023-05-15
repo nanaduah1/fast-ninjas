@@ -1,8 +1,12 @@
-import React from 'react';
-import { HttpDataTable } from './http-data-table';
+import React from "react";
+import { HttpDataTable } from "./http-data-table";
 
 export const BasicHttpDataTable = () => {
-  return (
-    <HttpDataTable>hello world!</HttpDataTable>
-  );
-}
+  const columns = [
+    { field: "userId", title: "User Id" },
+    { field: "id", title: "Id" },
+    { field: "title", title: "Title" },
+  ];
+  const src = "https://jsonplaceholder.typicode.com/todos";
+  return <HttpDataTable src={src} columns={columns} />;
+};
