@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import useHttp from "@fast-ninjas/hooks.use-http";
-import { DataTable, Column } from "@fast-ninjas/admin.data-table";
+import { DataTable } from "@fast-ninjas/admin.data-table";
+
+export interface Column {
+  field: string;
+  title: string;
+  minWidth?: number;
+  align?: "right" | "left";
+  format?: (value: number) => string;
+}
 
 export type HttpDataTableProps = {
   src: string;
