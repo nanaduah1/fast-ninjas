@@ -14,8 +14,8 @@ importers:
         specifier: 11.11.0
         version: registry.npmjs.org/@emotion/styled@11.11.0(@emotion/react@11.11.0)(@types/react@17.0.59)(react@17.0.2)
       '@fast-ninjas/admin.data-table':
-        specifier: ^0.0.1
-        version: registry.npmjs.org/@fast-ninjas/admin.data-table@0.0.1(@testing-library/react@12.1.5)(@types/react@17.0.59)(react-dom@17.0.2)
+        specifier: ^0.0.2
+        version: registry.npmjs.org/@fast-ninjas/admin.data-table@0.0.2(@testing-library/react@12.1.5)(@types/react@17.0.59)(react-dom@17.0.2)
       '@fast-ninjas/hooks.use-http':
         specifier: ^0.0.1
         version: registry.npmjs.org/@fast-ninjas/hooks.use-http@0.0.1(react-dom@17.0.2)(react@17.0.2)
@@ -359,11 +359,11 @@ packages:
     version: 0.3.1
     dev: false
 
-  registry.npmjs.org/@fast-ninjas/admin.data-table@0.0.1(@testing-library/react@12.1.5)(@types/react@17.0.59)(react-dom@17.0.2):
-    resolution: {integrity: sha512-awa0EO1FKFbpljnlaGXq8cey/YSuWvTWJKmP9QUtsfqcN5BQ4Y9N196d7wkmejUSnvi4qxKSkJGKSCcy3NV1WA==, registry: https://node.bit.cloud/, tarball: https://registry.npmjs.org/@fast-ninjas/admin.data-table/-/admin.data-table-0.0.1.tgz}
-    id: registry.npmjs.org/@fast-ninjas/admin.data-table/0.0.1
+  registry.npmjs.org/@fast-ninjas/admin.data-table@0.0.2(@testing-library/react@12.1.5)(@types/react@17.0.59)(react-dom@17.0.2):
+    resolution: {integrity: sha512-h58dwqqAMYRUWblH6dPfKIYLvNFn4aORRa2sK93pKwzPnbL9HgWf+nnxvvc/Y1aJtbIH9xR+e8PgD1MSJRzj0g==, registry: https://node.bit.cloud/, tarball: https://registry.npmjs.org/@fast-ninjas/admin.data-table/-/admin.data-table-0.0.2.tgz}
+    id: registry.npmjs.org/@fast-ninjas/admin.data-table/0.0.2
     name: '@fast-ninjas/admin.data-table'
-    version: 0.0.1
+    version: 0.0.2
     peerDependencies:
       '@testing-library/react': '*'
     peerDependenciesMeta:

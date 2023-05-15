@@ -40,7 +40,7 @@
                 "policy": {
                     "dependencies": {
                         "@fast-ninjas/hooks.use-http": "0.0.1",
-                        "@fast-ninjas/admin.data-table": "0.0.1"
+                        "@fast-ninjas/admin.data-table": "0.0.2"
                     }
                 }
             }
