@@ -53,11 +53,7 @@ importers:
         specifier: 5.9.5
         version: registry.npmjs.org/@types/testing-library__jest-dom@5.9.5
 
-  components/admin/data-table:
-    dependencies:
-      react:
-        specifier: ^18.2.0
-        version: registry.npmjs.org/react@18.2.0
+  components/admin/data-table: {}
 
   components/admin/http-data-table: {}
 
