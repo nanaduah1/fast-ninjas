@@ -27,5 +27,5 @@ export function HttpDataTable({ src, columns }: HttpDataTableProps) {
         setData(json);
       });
   }, []);
-  return <DataTable data={data} Columns={columns} />;
+  return <DataTable data={data} columns={columns} />;
 }
