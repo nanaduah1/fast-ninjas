@@ -11,7 +11,7 @@
 {
     "admin/data-table": {
         "scope": "",
-        "version": "2a2be58caa94c8bcdd56d7fdf6fb3a882d745431",
+        "version": "",
         "mainFile": "index.ts",
         "rootDir": "components/admin/data-table",
         "config": {
@@ -21,6 +21,26 @@
                         "@mui/material": "5.13.0",
                         "@emotion/styled": "11.11.0",
                         "@emotion/react": "11.11.0"
+                    }
+                }
+            }
+        }
+    },
+    "admin/http-data-table": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "components/admin/http-data-table",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            },
+            "teambit.dependencies/dependency-resolver": {
+                "policy": {
+                    "dependencies": {
+                        "@fast-ninjas/hooks.use-http": "0.0.1",
+                        "@fast-ninjas/admin.data-table": "0.0.2"
                     }
                 }
             }
