@@ -26,5 +26,17 @@
             }
         }
     },
+    "hooks/use-http": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "components/hooks/use-http",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
     "$schema-version": "15.0.0"
 }
