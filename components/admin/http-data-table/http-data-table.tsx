@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { DataTable } from "@fast-ninjas/admin.data-table";
 import useHttp from "@fast-ninjas/hooks.use-http";
+import { DataTable } from "@fast-ninjas/admin.data-table";
+
+export interface Column {
+  field: string;
+  title: string;
+  minWidth?: number;
+  align?: "right" | "left";
+  format?: (value: number) => string;
+}
 
 export type HttpDataTableProps = {
-  /**
-   * a node to be rendered in the special component.
-   */
   src: string;
-  columns: Array<any>;
+  columns: Column[];
 };
 
 export function HttpDataTable({ src, columns }: HttpDataTableProps) {
@@ -15,7 +20,12 @@ export function HttpDataTable({ src, columns }: HttpDataTableProps) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    get(src).then((recs: any) => setData(recs));
+    get(src)
+      .then((recs: any) => recs.json())
+      .then((json) => {
+        console.log(json);
+        setData(json);
+      });
   }, []);
-  return <DataTable data={data} Columns={columns} />;
+  return <DataTable data={data} columns={columns} />;
 }

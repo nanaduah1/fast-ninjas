@@ -2,17 +2,34 @@
 description: A HttpDataTable component.
 ---
 
-import { HttpDataTable } from './http-data-table';
+import { HttpDataTable } from "./http-data-table";
 
 A component that does something special and renders text in a div.
 
 ### Component usage
+
 ```js
-<HttpDataTable>Hello world!</HttpDataTable>
+function BasicHttpDataTable() {
+  const columns = [
+    { field: "userId", title: "User Id" },
+    { field: "id", title: "Id" },
+    { field: "title", title: "Title" },
+  ];
+  const src = "https://jsonplaceholder.typicode.com/todos";
+  return <HttpDataTable src={src} columns={columns} />;
+}
 ```
 
 ### Render hello world!
 
 ```js live
-<HttpDataTable>Hello world!</HttpDataTable>
+function BasicHttpDataTable() {
+  const columns = [
+    { field: "userId", title: "User Id" },
+    { field: "id", title: "Id" },
+    { field: "title", title: "Title" },
+  ];
+  const src = "https://jsonplaceholder.typicode.com/todos";
+  return <HttpDataTable src={src} columns={columns} />;
+}
 ```

@@ -6,6 +6,9 @@ on:
       component:
         required: true
         type: string
+      version:
+        type: string
+        default: 0.0.1
       message:
         type: string
 
@@ -25,6 +28,6 @@ jobs:
       - run: npx @teambit/bvm install
 
       - run: $HOME/bin/bit install
-      - run: $HOME/bin/bit tag ${{ inputs.component }} -m "${{ inputs.message }}" --skip-tests
+      - run: $HOME/bin/bit tag ${{ inputs.component }} -m "${{ inputs.message }}" -v ${{ inputs.version }} --skip-tests
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_ACCESS_TOKEN}}
