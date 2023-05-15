@@ -7,19 +7,23 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { Column, createCols, createRows } from "./util";
 
-export type DataTableProps = {
-  data: Array<any>;
-  Columns: Array<Column>;
+type Column = {
+  field: string;
+  title: string;
+  minWidth?: number;
+  align?: "right" | "left" | "center";
+  format?: (value: any) => string;
 };
 
-export function DataTable({ data: row, Columns: col }: DataTableProps) {
+export type DataTableProps = {
+  data: any[];
+  columns: Column[];
+};
+
+export function DataTable({ data, columns }: DataTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  const columns = createCols(col);
-  const rows = createRows(row, col);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -51,8 +55,8 @@ export function DataTable({ data: row, Columns: col }: DataTableProps) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows &&
-              rows
+            {data &&
+              data
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   return (
@@ -76,7 +80,7 @@ export function DataTable({ data: row, Columns: col }: DataTableProps) {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={data.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
