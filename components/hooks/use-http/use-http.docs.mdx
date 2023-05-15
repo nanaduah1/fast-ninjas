@@ -11,28 +11,28 @@ A component that does something special and renders text in a div.
 ```js
 function MyComponent() {
   const { get } = useHttp();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    get("https://something.com/api/stuff")
+    get("https://jsonplaceholder.typicode.com/todos")
       .then((res) => res.json())
-      .then(console.log);
-  });
+      .then((d) => setData(d));
+  }, []);
 
-  return <div>Using Http Get</div>;
+  return (
+    <div>
+      <ol>
+        {data.map((d) => (
+          <li key={d.userId}>{d.title}</li>
+        ))}
+      </ol>
+    </div>
+  );
 }
 ```
 
-### Render hello world!
+### No live test!
 
 ```js live
-function MyComponent() {
-  const { get } = useHttp();
-
-  useEffect(() => {
-    get("https://something.com/api/stuff")
-      .then((res) => res.json())
-      .then(console.log);
-  });
-
-  return <div>Using Http Get</div>;
+<></>
 ```
