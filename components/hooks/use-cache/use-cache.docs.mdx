@@ -1,0 +1,24 @@
+---
+description: "A React Hook that increments a count by 1 each time it is called."
+labels: ["hook", "cache"]
+---
+
+import { useCache } from "./use-cache";
+
+## A React Hook create a cache
+
+### Component usage
+
+```js
+import { useCache } from "./use-cache";
+
+const cache = useCache();
+const getLatest = () => {
+  cache.getOrSet("my-key", () => {
+    console.log("Loading from source");
+    return 4000;
+  });
+};
+
+<button onClick={getLatest}>increment</button>;
+```

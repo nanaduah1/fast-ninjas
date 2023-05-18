@@ -46,6 +46,18 @@
             }
         }
     },
+    "hooks/use-cache": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "components/hooks/use-cache",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
     "hooks/use-http": {
         "scope": "",
         "version": "",
