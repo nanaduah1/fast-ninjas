@@ -71,7 +71,6 @@
             "teambit.dependencies/dependency-resolver": {
                 "policy": {
                     "dependencies": {
-                        "hooks/use-cache": "0.3.2"
                     }
                 }
             }
