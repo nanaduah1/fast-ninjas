@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useState } from "react";
+import { useCache } from "@fast-ninjas/hooks.use-cache";
 
 export const AccessDeniedError = "AccessDeniedError";
 export const UnAuthorizedError = "UnAuthorizedError";
@@ -7,6 +8,7 @@ export const UnAuthorizedError = "UnAuthorizedError";
 type HttpHeaderConfig = { [key: string]: string };
 
 export default function useHttp() {
+  const cache = useCache(15);
   const [loading, setLoading] = useState(false);
 
   const request = useCallback(
@@ -53,9 +55,14 @@ export default function useHttp() {
   );
 
   const get = useCallback(
-    async (url: string, headers?: HttpHeaderConfig) =>
-      request(url, "GET", null, headers),
-    [request]
+    async (url: string, headers?: HttpHeaderConfig) => {
+      return await cache.getOrSet(url, async () => {
+        console.log("Loading from ", url);
+        const resp = await request(url, "GET", null, headers);
+        return await resp.json();
+      });
+    },
+    [request, cache]
   );
 
   const patch = useCallback(

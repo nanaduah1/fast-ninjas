@@ -67,6 +67,13 @@
             "teambit.react/react": {},
             "teambit.envs/envs": {
                 "env": "teambit.react/react"
+            },
+            "teambit.dependencies/dependency-resolver": {
+                "policy": {
+                    "dependencies": {
+                        "hooks/use-cache": "0.3.2"
+                    }
+                }
             }
         }
     },

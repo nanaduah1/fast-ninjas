@@ -62,7 +62,7 @@ class Cache {
     this.store = store;
   }
 
-  getOrSet<T>(key: string, setter?: () => T, timeout?: number): T {
+  getOrSet<T>(key: string, setter?: () => T, timeout?: number) {
     const keyToLower = key.toLowerCase();
     const strData = this.store.getItem(keyToLower);
     const now = new Date();
@@ -76,10 +76,12 @@ class Cache {
     const response = setter();
     const itemTimeout = now.getTime() + 1000 * (timeout ?? this.timeout);
 
-    this.store.setItem(
-      keyToLower,
-      JSON.stringify({ data: response, timeout: itemTimeout })
-    );
-    return response;
+    return Promise.resolve(response).then((val) => {
+      this.store.setItem(
+        keyToLower,
+        JSON.stringify({ data: val, timeout: itemTimeout })
+      );
+      return val;
+    });
   }
 }
