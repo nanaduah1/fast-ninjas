@@ -68,6 +68,7 @@ export function DataTable({ data, columns }: DataTableProps) {
                           role="checkbox"
                           tabIndex={-1}
                           key={index}
+                          onClick={row?.onClick}
                         >
                           {columns.map((column) => {
                             const value = row[column.field];
