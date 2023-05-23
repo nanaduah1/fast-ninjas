@@ -20,9 +20,10 @@ export type Column = {
 export type DataTableProps = {
   data: any[];
   columns: Column[];
+  onRowClicked: (row:any, index?:number)=>void
 };
 
-export function DataTable({ data, columns }: DataTableProps) {
+export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -68,6 +69,7 @@ export function DataTable({ data, columns }: DataTableProps) {
                           role="checkbox"
                           tabIndex={-1}
                           key={index}
+                          onClick={()=>onRowClicked(row, index)}
                         >
                           {columns.map((column) => {
                             const value = row[column.field];
