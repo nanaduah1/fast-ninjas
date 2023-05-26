@@ -23,6 +23,8 @@ export type DataTableProps = {
   onRowClicked: (row: any, index?: number) => void;
 };
 
+const tableRowStyle = { cursor: "pointer" };
+
 export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -70,7 +72,7 @@ export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
                           tabIndex={-1}
                           key={index}
                           onClick={() => onRowClicked(row, index)}
-                          sx={{ cursor: "pointer" }}
+                          sx={tableRowStyle}
                         >
                           {columns.map((column) => {
                             const value = row[column.field];
@@ -78,7 +80,7 @@ export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
                               <TableCell
                                 key={column.title}
                                 align={column.align}
-                                sx={{ cursor: "pointer" }}
+                                sx={tableRowStyle}
                               >
                                 {column.format && typeof value === "number"
                                   ? column.format(value)
