@@ -20,7 +20,7 @@ export type Column = {
 export type DataTableProps = {
   data: any[];
   columns: Column[];
-  onRowClicked: (row:any, index?:number)=>void
+  onRowClicked: (row: any, index?: number) => void;
 };
 
 export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
@@ -69,7 +69,8 @@ export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
                           role="checkbox"
                           tabIndex={-1}
                           key={index}
-                          onClick={()=>onRowClicked(row, index)}
+                          onClick={() => onRowClicked(row, index)}
+                          sx={{ cursor: "pointer" }}
                         >
                           {columns.map((column) => {
                             const value = row[column.field];
@@ -77,6 +78,7 @@ export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
                               <TableCell
                                 key={column.title}
                                 align={column.align}
+                                sx={{ cursor: "pointer" }}
                               >
                                 {column.format && typeof value === "number"
                                   ? column.format(value)
