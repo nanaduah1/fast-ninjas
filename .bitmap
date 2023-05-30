@@ -11,7 +11,7 @@
 {
     "admin/data-table": {
         "scope": "",
-        "version": "",
+        "version": "2a2be58caa94c8bcdd56d7fdf6fb3a882d745431",
         "mainFile": "index.ts",
         "rootDir": "components/admin/data-table",
         "config": {
@@ -40,7 +40,7 @@
                 "policy": {
                     "dependencies": {
                         "@fast-ninjas/hooks.use-http": "0.0.1",
-                        "@fast-ninjas/admin.data-table": "0.0.2"                        
+                        "@fast-ninjas/admin.data-table": "0.0.2"
                     }
                 }
             }
@@ -70,8 +70,7 @@
             },
             "teambit.dependencies/dependency-resolver": {
                 "policy": {
-                    "dependencies": {
-                    }
+                    "dependencies": {}
                 }
             }
         }

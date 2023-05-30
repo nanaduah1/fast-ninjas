@@ -25,6 +25,23 @@ export type DataTableProps = {
 
 const tableRowStyle = { cursor: "pointer" };
 
+function get(attr: string, obj: any) {
+  if (!obj) return null;
+  if (!attr) return obj;
+  if (!attr.includes(".")) return obj[attr];
+
+  const keyParts = attr.split(".");
+
+  let value = obj;
+  for (let idx = 0; idx < keyParts.length; idx++) {
+    if (value) {
+      value = value[keyParts[idx]];
+    } else break;
+  }
+
+  return value;
+}
+
 export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -42,79 +59,77 @@ export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
 
   return (
     <Paper sx={{ width: "100%", overflow: "hidden" }}>
-      <>
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              <TableRow>
-                {columns &&
-                  columns.map((column) => (
-                    <TableCell
-                      key={column.field}
-                      align={column.align}
-                      style={{ minWidth: column.minWidth }}
-                    >
-                      {column.title}
-                    </TableCell>
-                  ))}
-              </TableRow>
-            </TableHead>
-            {data.length ? (
-              <TableBody>
-                {data &&
-                  data
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row, index) => {
-                      return (
-                        <TableRow
-                          hover
-                          role="checkbox"
-                          tabIndex={-1}
-                          key={index}
-                          onClick={() => onRowClicked(row, index)}
-                          sx={tableRowStyle}
-                        >
-                          {columns.map((column) => {
-                            const value = row[column.field];
-                            return (
-                              <TableCell
-                                key={column.title}
-                                align={column.align}
-                                sx={tableRowStyle}
-                              >
-                                {column.format && typeof value === "number"
-                                  ? column.format(value)
-                                  : value}
-                              </TableCell>
-                            );
-                          })}
-                        </TableRow>
-                      );
-                    })}
-              </TableBody>
-            ) : (
-              <Box
-                display={"flex"}
-                justifyContent={"center"}
-                alignItems={"center"}
-              >
-                No available data
-              </Box>
-            )}
-          </Table>
-        </TableContainer>
-        {data.length && (
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={data.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-        )}
-      </>
+      <TableContainer sx={{ maxHeight: 440 }}>
+        <Table stickyHeader aria-label="sticky table">
+          <TableHead>
+            <TableRow>
+              {columns &&
+                columns.map((column) => (
+                  <TableCell
+                    key={column.field}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.title}
+                  </TableCell>
+                ))}
+            </TableRow>
+          </TableHead>
+          {data.length ? (
+            <TableBody>
+              {data &&
+                data
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row, index) => {
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={index}
+                        onClick={() => onRowClicked(row, index)}
+                        sx={tableRowStyle}
+                      >
+                        {columns.map((column) => {
+                          const value = get(column.field, row);
+                          return (
+                            <TableCell
+                              key={column.title}
+                              align={column.align}
+                              sx={tableRowStyle}
+                            >
+                              {column.format && typeof value === "number"
+                                ? column.format(value)
+                                : value}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+            </TableBody>
+          ) : (
+            <Box
+              display={"flex"}
+              justifyContent={"center"}
+              alignItems={"center"}
+            >
+              No available data
+            </Box>
+          )}
+        </Table>
+      </TableContainer>
+      {data.length && (
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={data.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      )}
     </Paper>
   );
 }
