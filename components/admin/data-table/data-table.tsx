@@ -20,7 +20,7 @@ export type Column = {
 export type DataTableProps = {
   data: any[];
   columns: Column[];
-  onRowClicked: (row: any, index?: number) => void;
+  onRowClicked?: (row: any, index?: number) => void;
 };
 
 const tableRowStyle = { cursor: "pointer" };
@@ -87,7 +87,7 @@ export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
                         role="checkbox"
                         tabIndex={-1}
                         key={index}
-                        onClick={() => onRowClicked(row, index)}
+                        onClick={() => onRowClicked && onRowClicked(row, index)}
                         sx={tableRowStyle}
                       >
                         {columns.map((column) => {
@@ -119,7 +119,7 @@ export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
           )}
         </Table>
       </TableContainer>
-      {data.length && (
+      {data.length > 0 && (
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
