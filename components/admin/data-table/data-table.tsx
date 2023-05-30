@@ -22,6 +22,7 @@ export type DataTableProps = {
   columns: Column[];
   onRowClicked?: (row: any, index?: number) => void;
   emptyDisplay?: string | JSX.Element;
+  showNumbering?: boolean;
 };
 
 const tableRowStyle = { cursor: "pointer" };
@@ -43,14 +44,11 @@ function get(attr: string, obj: any) {
   return value;
 }
 
-export function DataTable({
-  data,
-  columns,
-  onRowClicked,
-  emptyDisplay,
-}: DataTableProps) {
+export function DataTable(props: DataTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const { data, columns, onRowClicked, emptyDisplay, showNumbering } = props;
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -69,6 +67,9 @@ export function DataTable({
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
+              {showNumbering === false ? null : (
+                <TableCell key="num#">#</TableCell>
+              )}
               {columns &&
                 columns.map((column) => (
                   <TableCell
@@ -96,6 +97,9 @@ export function DataTable({
                         onClick={() => onRowClicked && onRowClicked(row, index)}
                         sx={tableRowStyle}
                       >
+                        {showNumbering === false ? null : (
+                          <TableCell key="num-cell">{index + 1}</TableCell>
+                        )}
                         {columns.map((column) => {
                           const value = get(column.field, row);
                           return (
