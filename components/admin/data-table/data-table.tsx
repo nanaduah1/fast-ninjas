@@ -14,13 +14,14 @@ export type Column = {
   title: string;
   minWidth?: number;
   align?: "right" | "left" | "center" | undefined;
-  format?: (value: any) => string;
+  format?: (value: any) => string | JSX.Element;
 };
 
 export type DataTableProps = {
   data: any[];
   columns: Column[];
   onRowClicked?: (row: any, index?: number) => void;
+  emptyDisplay?: string | JSX.Element;
 };
 
 const tableRowStyle = { cursor: "pointer" };
@@ -42,7 +43,12 @@ function get(attr: string, obj: any) {
   return value;
 }
 
-export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
+export function DataTable({
+  data,
+  columns,
+  onRowClicked,
+  emptyDisplay,
+}: DataTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -98,7 +104,7 @@ export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
                               align={column.align}
                               sx={tableRowStyle}
                             >
-                              {column.format && typeof value === "number"
+                              {typeof column.format === "function"
                                 ? column.format(value)
                                 : value}
                             </TableCell>
@@ -114,7 +120,7 @@ export function DataTable({ data, columns, onRowClicked }: DataTableProps) {
               justifyContent={"center"}
               alignItems={"center"}
             >
-              No available data
+              {emptyDisplay ?? "No available data"}
             </Box>
           )}
         </Table>
