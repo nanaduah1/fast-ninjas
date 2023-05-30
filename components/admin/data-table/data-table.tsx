@@ -13,7 +13,7 @@ export type Column = {
   field: string;
   title: string;
   minWidth?: number;
-  align?: "right" | "left" | "center";
+  align?: "right" | "left" | "center" | undefined;
   format?: (value: any) => string;
 };
 
