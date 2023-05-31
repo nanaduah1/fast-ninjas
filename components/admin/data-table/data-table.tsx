@@ -7,14 +7,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { Box } from "@mui/material";
 
 export type Column = {
   field: string;
   title: string;
   minWidth?: number;
   align?: "right" | "left" | "center" | undefined;
-  format?: (value: any) => string | JSX.Element;
+  render?: (value: any) => string | JSX.Element;
 };
 
 export type DataTableProps = {
@@ -108,8 +107,8 @@ export function DataTable(props: DataTableProps) {
                               align={column.align}
                               sx={tableRowStyle}
                             >
-                              {typeof column.format === "function"
-                                ? column.format(value)
+                              {typeof column.render === "function"
+                                ? column.render(value)
                                 : value}
                             </TableCell>
                           );
@@ -119,13 +118,11 @@ export function DataTable(props: DataTableProps) {
                   })}
             </TableBody>
           ) : (
-            <Box
-              display={"flex"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              {emptyDisplay ?? "No available data"}
-            </Box>
+            <TableRow>
+              <TableCell colSpan={columns.length + 1} align="center">
+                {emptyDisplay ?? "No available data"}
+              </TableCell>
+            </TableRow>
           )}
         </Table>
       </TableContainer>

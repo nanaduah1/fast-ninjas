@@ -55,12 +55,19 @@ export default function useHttp() {
   );
 
   const get = useCallback(
-    async (url: string, headers?: HttpHeaderConfig) => {
-      return await cache.getOrSet(url, async () => {
-        console.log("Loading from ", url);
-        const resp = await request(url, "GET", null, headers);
-        return await resp.json();
-      });
+    async (
+      url: string,
+      headers?: HttpHeaderConfig,
+      cacheTimeoutSeconds?: number
+    ) => {
+      return await cache.getOrSet(
+        url,
+        async () => {
+          const resp = await request(url, "GET", null, headers);
+          return await resp.json();
+        },
+        cacheTimeoutSeconds
+      );
     },
     [request, cache]
   );
